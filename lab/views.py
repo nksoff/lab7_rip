@@ -17,15 +17,16 @@ def main(request):
 
 
 def signup(request):
+    redirect = request.GET.get('continue', '/')
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(redirect)
 
     if request.method == "POST":
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
             auth.login(request, user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(redirect)
     else:
         form = SignupForm()
 

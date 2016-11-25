@@ -32,8 +32,8 @@
         {% if request.user.is_authenticated %}
             You are authorized as {{ request.user.last_name }} {{ request.user.first_name }}. <a href="{% url 'logout' %}?continue={{ request.path }}">Logout</a>
         {% else %}
-            <a href="{% url 'signin' %}">Sign in</a> or
-            <a href="{% url 'signup' %}">Sign up</a>
+            <a href="{% url 'signin' %}?continue={{ request.path }}">Sign in</a> or
+            <a href="{% url 'signup' %}?continue={{ request.path }}">Sign up</a>
         {% endif %}
     </p>
 </div>
